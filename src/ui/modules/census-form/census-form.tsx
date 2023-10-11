@@ -12,25 +12,43 @@ import { Container } from "@/ui/components/container/container"
 import { Typography } from "@/ui/components/typography/typography"
 import { InputFieldDate } from '@/ui/components/input-field-date/input-field-date'
 import { InputFieldSelect } from '@/ui/components/input-field-select/input-field-select'
-import { id } from 'date-fns/locale'
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
 
 export const CensusForm = () => {
+  const { toast } = useToast()
 
   const form = useForm<z.infer<typeof CensusFormFieldsType>>({
     resolver: zodResolver(CensusFormFieldsType),
     defaultValues: {
       first_name: "",
       last_name: "",
+      // date_of_birth: undefined,
       sexe: "",
       address: "",
       phone_number: "",
-      id_card_number: ""
+      id_card_number: "",
+      // id_card_copy: undefined
     },
   })
  
   async function onSubmit(values: z.infer<typeof CensusFormFieldsType>) {
-    const {first_name, last_name, sexe, date_of_birth, address, phone_number, id_card_number} = values
-    await registerCensusData(first_name, last_name, sexe, date_of_birth, address, phone_number, id_card_number)
+    const {first_name, last_name, sexe, address, phone_number, id_card_number} = values
+    const result = await registerCensusData(first_name, last_name, sexe, address, phone_number, id_card_number)
+    console.log(result)
+
+    if(result === undefined) {
+      toast({
+        title: "Enregistré",
+        description: "Informations enregistrées avec succes",
+      })
+    } else {
+      toast({
+        variant: "destructive",
+        title: "Erreur survernue",
+        description: "Veuillez reentrer les informations",
+      })
+    }
   }
   
   return(
@@ -55,11 +73,11 @@ export const CensusForm = () => {
                 label="Nom"
                 placeholder="Entrez le nom"
               />
-              <InputFieldDate
+              {/* <InputFieldDate
                 control={form.control}
                 name='date_of_birth'
                 label="Date de naissance"
-              />
+              /> */}
               <InputFieldSelect
                 control={form.control}
                 name='sexe'
@@ -72,7 +90,7 @@ export const CensusForm = () => {
             <Container>
               <InputField
                 control={form.control}
-                name='adresse'
+                name='address'
                 label='Adresse du domicile'
                 placeholder="Adresse de domicile"
               />
@@ -88,13 +106,13 @@ export const CensusForm = () => {
                 label="Numero de la carte d'identité nationale"
                 placeholder="Numero de la carte d'identité nationale"
               />
-              <InputField
+              {/* <InputField
                 control={form.control}
-                name='card_number_copy'
+                name='id_card_copy'
                 label="Copie de la carte d'identité nationale"
                 placeholder="Copie de la carte d'identité nationale"
                 type='file'
-              />
+              /> */}
             </Container>
           </Container>
             

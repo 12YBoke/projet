@@ -39,14 +39,14 @@ export const Navigation = ({ className }: Props) => {
         )
       }
     >
-      <Container className="flex flex-col items-center justify-between px-6 py-2 h-[100vh] gap-20">
+      <Container className="flex flex-col items-center justify-between px-6 py-6 h-[100vh] gap-20">
         <Container className="flex flex-col gap-8">
           <Link href="/dashboard">
             <Typography variant="title-sm" component="h3">RECENCEMENT DE LA COMMUNE DE LIMETE</Typography>
           </Link>
           <Container className="">
             <Typography variant="title-sm" component="h4">
-              {user ? user.session.user.user_metadata.first_name : 'chargement du nom'}
+              Agent : {user ? user.session.user.user_metadata.first_name : 'chargement du nom'}
             </Typography>
           </Container>
           <nav className="block gap-2">

@@ -48,9 +48,9 @@ export const CensusFormFieldsType = z.object({
   sexe: z.string()
     .min(5)
     .max(5),
-  date_of_birth: z.date({
-    required_error: "Entrez la date de naissance",
-  }),
+  // date_of_birth: z.date({
+  //   required_error: "Entrez la date de naissance",
+  // }),
   address: z.string()
     .min(2, {
       message: "Adresse trop courte.",
@@ -66,14 +66,14 @@ export const CensusFormFieldsType = z.object({
     })
     .max(50),
   
-  id_card_copy: z.object({
-    profileImage: z
-      .any()
-      .refine((files) => files?.length === 0, "Image is required.") // if no file files?.length === 0, if file files?.length === 1
-      .refine((files) => files?.[0]?.size >= MAX_FILE_SIZE, `Max file size is 5MB.`) // this should be greater than or equals (>=) not less that or equals (<=)
-      .refine(
-        (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-        ".jpg, .jpeg, .png and .webp files are accepted."
-      ),
-  })
+  // id_card_copy: z.object({
+  //   profileImage: z
+  //     .any()
+  //     .refine((files) => files?.length === 0, "Image is required.") // if no file files?.length === 0, if file files?.length === 1
+  //     .refine((files) => files?.[0]?.size >= MAX_FILE_SIZE, `Max file size is 5MB.`) // this should be greater than or equals (>=) not less that or equals (<=)
+  //     .refine(
+  //       (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+  //       ".jpg, .jpeg, .png and .webp files are accepted."
+  //     ),
+  // })
 })
