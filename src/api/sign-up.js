@@ -7,8 +7,11 @@ export const signUp = async (email, username, password) => {
     email: email,
     password: password,
     options: {
-      username: username,
-      emailRedirectTo: `${location.origin}/auth/callback`
-    }
+      emailRedirectTo: `${location.origin}/auth/callback`,
+      data: {
+        first_name: username,
+      }
+    },
   })
+
 }

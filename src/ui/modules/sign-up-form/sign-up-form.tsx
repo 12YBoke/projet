@@ -27,6 +27,7 @@ export const SignUpForm = () => {
     const {email, username, password} = values
     await signUp(email, username, password)
     router.refresh()
+    router.push('/')
   }
   
   return(
@@ -59,6 +60,9 @@ export const SignUpForm = () => {
           <Buttons type='submit'>Ajouter</Buttons>
         </form>
       </Form>
+      <br/>
+      <br/>
+      <Buttons variant='ghost' buttonType='link' baseUrl='/'>Se connecter</Buttons>
     </Container>
   )
 }

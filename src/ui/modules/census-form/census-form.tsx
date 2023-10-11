@@ -1,6 +1,6 @@
 'use client'
 
-import { signUp } from '@/api/sign-up'
+import { registerCensusData } from '@/api/census'
 import { Form } from "@/components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -30,6 +30,7 @@ export const CensusForm = () => {
  
   async function onSubmit(values: z.infer<typeof CensusFormFieldsType>) {
     const {first_name, last_name, sexe, date_of_birth, address, phone_number, id_card_number} = values
+    await registerCensusData(first_name, last_name, sexe, date_of_birth, address, phone_number, id_card_number)
   }
   
   return(
@@ -98,7 +99,7 @@ export const CensusForm = () => {
           </Container>
             
             
-            <Buttons variant='accent' type='submit'>Enregistrer</Buttons>
+            <Buttons type='submit'>Enregistrer</Buttons>
           </form>
         </Form>
     </Container>

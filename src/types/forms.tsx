@@ -46,8 +46,8 @@ export const CensusFormFieldsType = z.object({
     })
     .max(50),
   sexe: z.string()
-    .min(1)
-    .max(1),
+    .min(5)
+    .max(5),
   date_of_birth: z.date({
     required_error: "Entrez la date de naissance",
   }),

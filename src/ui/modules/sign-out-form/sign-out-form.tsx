@@ -10,9 +10,10 @@ export const SignOutForm = () => {
   const handleSignOut = async () => {
     await signOut()
     router.refresh()
+    router.push('/')
   }
 
   return(
-    <Buttons buttonType='action' action={() => {handleSignOut()}} >Deconnexion</Buttons>
+    <Buttons variant='accent' buttonType='action' action={() => {handleSignOut()}} >Deconnexion</Buttons>
   )
 }

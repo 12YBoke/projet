@@ -26,6 +26,7 @@ export const LogInForm = () => {
     const {email, password} = values
     await logIn(email, password)
     router.refresh()
+    router.push('/dashboard')
   }
   
   return(
@@ -51,7 +52,10 @@ export const LogInForm = () => {
           />
           <Buttons type='submit'>Connexion</Buttons>
         </form>
-      </Form>      
+      </Form>
+      <br/>
+      <br/>
+      <Buttons variant='ghost' buttonType='link' baseUrl='/sign-up'>Creer un compte</Buttons>    
     </Container>
   )
 }
